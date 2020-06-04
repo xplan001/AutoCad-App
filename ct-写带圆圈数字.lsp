@@ -1,0 +1,27 @@
+;加载后键入CT，按提示输入开始数字，数字个数，文本高度，圆的半径比例，点击屏幕上的点即可半自动;书写带圆圈的阿拉伯数字! 
+;---------------------按顺序书写带圆圈的阿拉伯数字-------------------------
+(princ "\n 按顺序书写带圆圈的阿拉伯数字!")
+(princ "\n To apply the program,Input \"ct\" .\n")
+(princ)
+(defun c:ct ()
+(setq stanum (getint "\n Input the begin integer<1>: "))
+(if (= stanum nil) (setq stanum 1) ) 
+(setq num1 (getint "\Input the times<10>: "))
+(if (= num1 nil) (setq num1 10) ) 
+(setq texthigh (getreal "\Input the high of the text<2.5>: "))
+(if (= texthigh nil) (setq texthigh 2.5) )
+(setq r1 (getreal "\nInput the radius <0.85>: "))
+(if (= r1 nil) (setq r1 0.85) ) 
+(command "style" "standard" "romans.shx,ehzdx.shx" "0" "0.7" "0" "n" "n" "n")
+(repeat num1
+(setq pt (getpoint "\nSpecify the point: "))
+(command "text" "j" "m" pt texthigh "0" stanum)
+(command "circle" pt (* texthigh r1))
+(setq stanum (1+ stanum))
+)
+(princ "\n Welcome to use the program again!")
+(princ "\n Copyright by HongQuan.\n")
+(princ "\n TianJin Urban Construction Design Courtyard!\n")
+(princ)
+) 
+
