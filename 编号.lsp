@@ -1,0 +1,12 @@
+;编号
+(defun c:BH()
+         (setq qian(getstring "\n 请输入编号有前缀："))
+         (setq hou(getstring "\n 请输入编号有后缀："))
+         (setq pt(getpoint "\n请输入编号放入的位置"))
+         (setq i 1)
+         (while (/= pt nil)
+	        (command "text" "j" "bc" pt "2.5" "0"  (strcat qian (rtos i 2 1) hou))
+	        (setq i(1+ i))
+	   (setq pt(getpoint "\n请输入编号放入的位置"))
+	   )
+  )
