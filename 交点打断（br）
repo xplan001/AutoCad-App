@@ -1,0 +1,15 @@
+;;;交点打断
+(defun c:br ()
+(command) 
+(princ "\n选择要切断的物体:")
+(while (setq mid (entsel)) 
+(setq old-osmode (getvar "osmode"))
+(command "_.break"
+   mid
+   "F"
+   (setq pt1 (getpoint "\n输入切断点:"))
+   (progn (setvar "osmode" 0) pt1)
+)
+(setvar "osmode" old-osmode)
+)
+)
