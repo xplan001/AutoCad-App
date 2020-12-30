@@ -1,0 +1,12 @@
+;;;刷文字
+(defun c:aa ( / content name_old text_new)  
+(repeat 1000
+(setq content (cdr(assoc 1 (entget(car(entsel"\n 请选择源文字:"))))))
+(setq name_old(car(entsel"\n 请选择目标文字:")))
+(setq text_new(entget name_old))
+(setq text_new(subst (cons '1 content) (assoc 1 text_new) text_new))
+(entmake text_new)
+(entdel name_old)
+(princ)
+)
+)
